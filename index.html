@@ -63,6 +63,10 @@
                     <ion-icon name="people-outline"></ion-icon>
                     <span>Customers</span>
                 </a>
+                <a href="#" class="nav-item" data-target="foreigner-status">
+                    <ion-icon name="airplane-outline"></ion-icon>
+                    <span>Foreigner Status</span>
+                </a>
             </nav>
 
             <div class="user-profile">
@@ -323,6 +327,61 @@
                         </div>
                     </div>
                 </section>
+
+                <!-- Seoul Detail View -->
+                <section id="seoul-detail" class="view hidden">
+                    <div class="header-flex">
+                        <div>
+                            <h2>Seoul Regional Sales</h2>
+                            <p class="subtitle">District-level performance breakdown</p>
+                        </div>
+                        <button class="btn-secondary" id="back-to-main">
+                            <ion-icon name="arrow-back-outline"></ion-icon> Back to National
+                        </button>
+                    </div>
+
+                    <div class="dashboard-grid puzzle-layout">
+                        <!-- Hexagon Map Container -->
+                        <div class="glass" style="flex: 2; min-height: 500px; display: flex; flex-direction: column;">
+                            <div class="map-header">
+                                <h3>District Performance Map</h3>
+                                <div class="legend">
+                                    <span class="dot high"></span> High (>1000)
+                                    <span class="dot med"></span> Med (>500)
+                                    <span class="dot low"></span> Low
+                                </div>
+                            </div>
+                            <div id="seoul-hex-map" class="map-container" style="flex: 1; position: relative;">
+                                <!-- SVG Hexagon Map will be rendered here -->
+                            </div>
+                        </div>
+
+                        <!-- District Detail Panel -->
+                        <div class="glass" style="flex: 1;">
+                            <h3>District Insights</h3>
+                            <div class="insight-card">
+                                <h4 id="seoul-district-name">Select a District</h4>
+                                <div class="metric-big">
+                                    <span id="seoul-district-sales">-</span>
+                                    <small>New Subscribers</small>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="fill" style="width: 0%" id="seoul-district-bar"></div>
+                                </div>
+                                <p class="mt-2 text-sm text-gray">Target Achievement: <span
+                                        id="seoul-district-target">-</span>%</p>
+                            </div>
+
+                            <div class="ranking-list mt-4">
+                                <h4>Top Performing Districts</h4>
+                                <ul class="activity-list" id="seoul-ranking-list">
+                                    <!-- Populated by JS -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <!-- Puzzle Dashboard View -->
                 <section id="puzzle" class="view hidden">
                     <div class="puzzle-layout">
@@ -375,10 +434,39 @@
                         </div>
                     </div>
                 </section>
+
+                <!-- Foreigner Status Dashboard -->
+                <section id="foreigner-status" class="view hidden">
+                    <div class="header-flex">
+                        <div>
+                            <h2>Foreigner Statistics</h2>
+                            <p class="subtitle">Real-time data from KOSIS API</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <!-- Main Chart Area -->
+                        <div class="glass" style="grid-column: span 2; min-height: 400px;">
+                            <h3>Monthly Foreigner Entrants (Top 5 Nations)</h3>
+                            <div id="foreigner-chart-container" style="width: 100%; height: 350px; position: relative;">
+                                <canvas id="foreignerChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- API Data List -->
+                        <div class="glass" style="grid-column: span 1; overflow-y: auto; max-height: 500px;">
+                            <h3>Available Statistics (KOSIS)</h3>
+                            <ul class="activity-list" id="kosis-list">
+                                <li class="loading-spinner">Loading API data...</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
             </div>
         </main>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/app.js"></script>
 </body>
 

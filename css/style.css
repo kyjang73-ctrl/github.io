@@ -605,6 +605,117 @@ body {
     font-size: 0.9rem;
 }
 
+/* Seoul Detail View */
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+#seoul-hex-map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.hex-grid {
+    width: 100%;
+    height: 100%;
+}
+
+.hex-path {
+    fill: rgba(255, 255, 255, 0.05);
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 1;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.hex-path:hover {
+    fill: rgba(255, 255, 255, 0.2);
+    transform: scale(1.02);
+    transform-origin: center;
+}
+
+.hex-path.high {
+    fill: rgba(239, 68, 68, 0.6);
+    stroke: #ef4444;
+}
+
+.hex-path.med {
+    fill: rgba(249, 115, 22, 0.6);
+    stroke: #f97316;
+}
+
+.hex-path.low {
+    fill: rgba(34, 197, 94, 0.6);
+    stroke: #22c55e;
+}
+
+.hex-label {
+    fill: white;
+    font-size: 10px;
+    text-anchor: middle;
+    pointer-events: none;
+    font-weight: 500;
+}
+
+.legend {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.legend .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+
+.legend .dot.high {
+    background: #ef4444;
+}
+
+.legend .dot.med {
+    background: #f97316;
+}
+
+.legend .dot.low {
+    background: #22c55e;
+}
+
+/* Progress Bar */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    margin-top: 1rem;
+    overflow: hidden;
+}
+
+.progress-bar .fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--secondary), var(--primary));
+    transition: width 1s ease;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    list-style: none;
+}
+
 .form-control {
     width: 100%;
     padding: 0.75rem;
