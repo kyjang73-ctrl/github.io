@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T-Sales Pro | Telecom Agency Support</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts for Premium Look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Ionicons for Icons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <!-- Leaflet Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo-icon"><ion-icon name="flash"></ion-icon></div>
+                <h1>T-Sales<span class="highlight">Pro</span></h1>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-target="dashboard">
+                    <ion-icon name="grid-outline"></ion-icon>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-target="products">
+                    <ion-icon name="phone-portrait-outline"></ion-icon>
+                    <span>Products</span>
+                </a>
+                <a href="#" class="nav-item" data-target="calculator">
+                    <ion-icon name="calculator-outline"></ion-icon>
+                    <span>Est. Calculator</span>
+                </a>
+                <a href="#" class="nav-item" data-target="puzzle">
+                    <ion-icon name="apps-outline"></ion-icon>
+                    <span>Puzzle Analytics</span>
+                </a>
+                <a href="#" class="nav-item" data-target="customers">
+                    <ion-icon name="people-outline"></ion-icon>
+                    <span>Customers</span>
+                </a>
+            </nav>
+
+            <div class="user-profile">
+                <div class="avatar">JM</div>
+                <div class="user-info">
+                    <p class="name">Jang Geum-yong</p>
+                    <p class="role">Sales Manager</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-bar">
+                <h2 id="page-title">Dashboard</h2>
+                <div class="actions">
+                    <button class="icon-btn"><ion-icon name="notifications-outline"></ion-icon></button>
+                    <button class="icon-btn"><ion-icon name="search-outline"></ion-icon></button>
+                </div>
+            </header>
+
+            <!-- Dynamic Views Container -->
+            <div id="view-container">
+                <!-- Views will be injected here via JS, or we can toggle visibility -->
+
+                <!-- Dashboard View -->
+                <section id="dashboard" class="view active">
+                    <div class="stats-grid">
+                        <div class="stat-card glass">
+                            <div class="icon-box blue"><ion-icon name="trending-up"></ion-icon></div>
+                            <div class="info">
+                                <h3>Total Sales</h3>
+                                <p class="value">₩128.5M</p>
+                                <span class="trend up">+12% this month</span>
+                            </div>
+                        </div>
+                        <div class="stat-card glass">
+                            <div class="icon-box purple"><ion-icon name="document-text"></ion-icon></div>
+                            <div class="info">
+                                <h3>Contracts</h3>
+                                <p class="value">42</p>
+                                <span class="trend up">+5 new today</span>
+                            </div>
+                        </div>
+                        <div class="stat-card glass">
+                            <div class="icon-box orange"><ion-icon name="people"></ion-icon></div>
+                            <div class="info">
+                                <h3>Visitors</h3>
+                                <p class="value">156</p>
+                                <span class="trend down">-3% vs yesterday</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-content">
+                        <!-- Left Column: Map & Stats -->
+                        <div class="map-section glass">
+                            <div class="map-header">
+                                <h3>Regional Subscribers</h3>
+                                <div class="region-info">
+                                    <span id="region-name">Total</span>
+                                    <span id="region-value" class="highlight">128,500</span>
+                                </div>
+                            </div>
+                            <div class="map-container">
+                                <!-- Stylized South Korea Map SVG -->
+                                <svg viewBox="0 0 400 500" class="korea-map" xmlns="http://www.w3.org/2000/svg">
+                                    <g id="regions">
+                                        <!-- Gyeonggi & Seoul (Top Left) -->
+                                        <path id="seoul-gyeonggi" data-name="Seoul/Gyeonggi" data-count="58,230"
+                                            d="M120,80 L200,60 L240,120 L160,160 Z" class="region" />
+                                        <text x="170" y="110" class="map-label">Seoul</text>
+
+                                        <!-- Gangwon (Top Right) -->
+                                        <path id="gangwon" data-name="Gangwon" data-count="8,450"
+                                            d="M200,60 L320,40 L340,140 L240,120 Z" class="region" />
+                                        <text x="270" y="90" class="map-label">Gangwon</text>
+
+                                        <!-- Chungcheong (Center) -->
+                                        <path id="chungcheong" data-name="Chungcheong" data-count="15,120"
+                                            d="M140,160 L260,150 L240,240 L120,220 Z" class="region" />
+                                        <text x="190" y="195" class="map-label">Chungc.</text>
+
+                                        <!-- Gyeongsang (Bottom Right) -->
+                                        <path id="gyeongsang" data-name="Gyeongsang" data-count="32,890"
+                                            d="M240,240 L260,150 L340,140 L360,350 L240,320 Z" class="region" />
+                                        <text x="290" y="240" class="map-label">Gyeong.</text>
+
+                                        <!-- Jeolla (Bottom Left) -->
+                                        <path id="jeolla" data-name="Jeolla" data-count="12,340"
+                                            d="M120,220 L240,240 L220,360 L100,340 Z" class="region" />
+                                        <text x="170" y="290" class="map-label">Jeolla</text>
+
+                                        <!-- Jeju (Island) -->
+                                        <path id="jeju" data-name="Jeju" data-count="1,470"
+                                            d="M100,400 L160,400 L150,440 L90,430 Z" class="region" />
+                                        <text x="125" y="420" class="map-label">Jeju</text>
+                                    </g>
+                                </svg>
+                                <div class="map-tooltip" id="map-tooltip"></div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Activity & Promo -->
+                        <div class="side-widgets">
+                            <div class="recent-activity glass">
+                                <h3>Recent Activity</h3>
+                                <ul class="activity-list">
+                                    <li>
+                                        <div class="dot green"></div>
+                                        <div class="details">
+                                            <p><strong>Samsung Galaxy S24</strong> sold to <em>Kim Min-su</em></p>
+                                            <span class="time">10 mins ago</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dot blue"></div>
+                                        <div class="details">
+                                            <p>New consultation: <strong>iPhone 15 Pro</strong></p>
+                                            <span class="time">45 mins ago</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dot purple"></div>
+                                        <div class="details">
+                                            <p>Contract updated for <em>Lee Ji-won</em></p>
+                                            <span class="time">2 hours ago</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="promo-banner glass">
+                                <div class="promo-text">
+                                    <h3>S24 Ultra Promo</h3>
+                                    <p>Double storage upgrade until Sunday!</p>
+                                    <button class="btn-primary">View Assets</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Products View -->
+                <section id="products" class="view hidden">
+                    <div class="filter-bar glass">
+                        <input type="text" placeholder="Search devices..." class="search-input">
+                        <div class="filters">
+                            <button class="filter-chip active">All</button>
+                            <button class="filter-chip">Samsung</button>
+                            <button class="filter-chip">Apple</button>
+                            <button class="filter-chip">Google</button>
+                        </div>
+                    </div>
+                    <div class="product-grid">
+                        <!-- Product items will be loaded here -->
+                        <div class="product-card glass">
+                            <div class="badge new">NEW</div>
+                            <div class="img-placeholder"></div>
+                            <h4>iPhone 15 Pro</h4>
+                            <p class="price">₩1,550,000</p>
+                            <button class="btn-outline">Select</button>
+                        </div>
+                        <div class="product-card glass">
+                            <div class="badge hot">HOT</div>
+                            <div class="img-placeholder"></div>
+                            <h4>Galaxy S24 Ultra</h4>
+                            <p class="price">₩1,698,000</p>
+                            <button class="btn-outline">Select</button>
+                        </div>
+                        <div class="product-card glass">
+                            <div class="img-placeholder"></div>
+                            <h4>Galaxy Z Flip5</h4>
+                            <p class="price">₩1,399,000</p>
+                            <button class="btn-outline">Select</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Calculator View -->
+                <section id="calculator" class="view hidden">
+                    <div class="calculator-layout">
+                        <div class="config-panel glass">
+                            <h3>Quote Configuration</h3>
+
+                            <div class="form-group">
+                                <label>Device</label>
+                                <select id="device-select" class="form-control">
+                                    <option value="0">Select Device...</option>
+                                    <option value="1550000">iPhone 15 Pro (128GB)</option>
+                                    <option value="1900000">iPhone 15 Pro Max (256GB)</option>
+                                    <option value="1698000">Galaxy S24 Ultra (512GB)</option>
+                                    <option value="1155000">Galaxy S24 (256GB)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Rate Plan</label>
+                                <select id="plan-select" class="form-control">
+                                    <option value="0">Select Plan...</option>
+                                    <option value="89000">5G Premier (₩89,000)</option>
+                                    <option value="69000">5G Standard (₩69,000)</option>
+                                    <option value="55000">5G Slim (₩55,000)</option>
+                                    <option value="33000">LTE Saver (₩33,000)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Installment Period</label>
+                                <div class="toggle-group">
+                                    <button class="toggle-btn" data-months="24">24 Mo</button>
+                                    <button class="toggle-btn active" data-months="30">30 Mo</button>
+                                    <button class="toggle-btn" data-months="36">36 Mo</button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Discount Type</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="discount" value="contract" checked>
+                                        <span>Contract Discount (25%)</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="discount" value="device">
+                                        <span>Device Subsidy</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="result-panel glass">
+                            <div class="receipt-header">
+                                <h3>Estimated Monthly Fee</h3>
+                                <p class="total-amount">₩<span id="total-monthly">0</span></p>
+                            </div>
+
+                            <div class="breakdown">
+                                <div class="line-item">
+                                    <span>Device Installment</span>
+                                    <span>₩<span id="device-monthly">0</span></span>
+                                </div>
+                                <div class="line-item">
+                                    <span>Plan Fee</span>
+                                    <span>₩<span id="plan-monthly">0</span></span>
+                                </div>
+                                <div class="line-item discount">
+                                    <span>Discount Applied</span>
+                                    <span>-₩<span id="discount-amount">0</span></span>
+                                </div>
+                                <div class="line-item interest">
+                                    <span>Installment Interest (5.9%)</span>
+                                    <span>₩<span id="interest-amount">0</span></span>
+                                </div>
+                            </div>
+
+                            <button class="btn-primary full-width">Print Quotation</button>
+                        </div>
+                    </div>
+                </section>
+                <!-- Puzzle Dashboard View -->
+                <section id="puzzle" class="view hidden">
+                    <div class="puzzle-layout">
+                        <!-- Main Map Area -->
+                        <div class="puzzle-map-section glass">
+                            <div class="map-header">
+                                <h3>Floating Population <span class="highlight">Live</span></h3>
+                                <!-- Controls removed for random demo -->
+                            </div>
+                            <div class="map-container" id="puzzle-map-container"
+                                style="flex: 1; height: 100%; min-height: 400px; position: relative;">
+                                <div id="puzzle-map" class="leaflet-map-container"></div>
+                            </div>
+                        </div>
+
+                        <!-- Side Analytics Panel -->
+                        <div class="puzzle-analytics glass">
+                            <h3>Congestion Insight</h3>
+
+                            <div class="insight-card">
+                                <h4>Selected Zone</h4>
+                                <p class="zone-name" id="puzzle-zone-name">Select a grid...</p>
+                                <div class="metric-big">
+                                    <span id="puzzle-density-val">-</span>
+                                    <small>People / 100m²</small>
+                                </div>
+                                <div class="congestion-level">
+                                    <div class="level-indicator" id="congestion-indicator"></div>
+                                    <span id="congestion-text">Unknown</span>
+                                </div>
+                            </div>
+
+                            <div class="ranking-list">
+                                <h4>Top Congested Areas</h4>
+                                <ul class="activity-list">
+                                    <li>
+                                        <div class="rank-badge red">1</div>
+                                        <div class="details"><span>Gangnam Stn.</span> <small>Very High</small></div>
+                                    </li>
+                                    <li>
+                                        <div class="rank-badge red">2</div>
+                                        <div class="details"><span>Hongdae</span> <small>High</small></div>
+                                    </li>
+                                    <li>
+                                        <div class="rank-badge orange">3</div>
+                                        <div class="details"><span>Yeouido</span> <small>Medium</small></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>
